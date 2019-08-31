@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    @-webkit-keyframes checkmark
+    {
+        0% {stroke-dashoffset: 50px}
+        100% {stroke-dashoffset: 0}
+    }
+    @-ms-keyframes checkmark
+    {
+        0% {stroke-dashoffset: 50px}
+        100% {stroke-dashoffset: 0}
+    }
+    @keyframes checkmark
+    {
+        0% {stroke-dashoffset: 50px}
+        100% {stroke-dashoffset: 0}
+    }
+    @-webkit-keyframes checkmark-circle
+    {
+        0% {stroke-dashoffset: 240px}
+        100% {stroke-dashoffset: 480px}
+    }
+    @-ms-keyframes checkmark-circle
+    {
+        0% {stroke-dashoffset: 240px}
+        100% {stroke-dashoffset: 480px}
+    }
+    @keyframes checkmark-circle
+    {
+        0% {stroke-dashoffset: 240px}
+        100% {stroke-dashoffset: 480px}
+    }
+    .inlinesvg .svg svg {display: inline}
+    .icon--order-success svg path
+    {
+        -webkit-animation: checkmark 0.25s ease-in-out 0.7s backwards;
+        animation: checkmark 0.25s ease-in-out 0.7s backwards
+    }
+    .icon--order-success svg circle
+    {
+        -webkit-animation: checkmark-circle 0.6s ease-in-out backwards;
+        animation: checkmark-circle 0.6s ease-in-out backwards
+    }
+</style>
+<div class="card bg-light card-body mx-auto p-3" style="max-width: 500px">
+    <h4 class="card-title mt-3 text-center">Successful</h4>
+    <div class="icon icon--order-success svg text-center">
+        <svg xmlns="" width="72px" height="72px">
+            <g fill="none" stroke="#8EC343" stroke-width="2">
+                <circle cx="36" cy="36" r="35" style="stroke-dasharray:240px, 240px; stroke-dashoffset: 480px;"></circle>
+                <path d="M17.417,37.778l9.93,9.909l25.444-25.393" style="stroke-dasharray:50px, 50px; stroke-dashoffset: 0;"></path>
+            </g>
+        </svg>
+    </div>
+    <p class="text-center">
+        You have successfully sign-up <br>
+        Please go to <a href="{% url 'login' %}">Login</a> page for login<br>
+        OR<br>
+        Go to <a href="{% url 'home' %}">Home Page</a>
+    </p>
+</div>
+{% endblock %}
