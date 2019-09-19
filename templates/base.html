@@ -21,9 +21,9 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse " id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+            <ul class="nav navbar-nav ml-auto">
                 {% if user.is_authenticated %}
-                    <li class="nav-item nav-link disabled">
+                    <li class="nav-item nav-link disabled text-black-50">
                         Hello, {{ user.first_name }} {{ user.last_name }}
                     </li>
                     <li class="nav-item">
@@ -34,11 +34,12 @@
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link table-hover li" href="{% url 'login' %}">Sign in</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link table-hover" href="{% url 'signup' %}">Sign up</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link table-hover li" href="{% url 'login' %}">Log in</a>
+                    </li>
+
                 {% endif %}
             </ul>
         </div>
@@ -51,3 +52,9 @@
     </footer>
 </body>
 </html>
+<div class="collapse navbar-collapse" id="navcol-1">
+    <ul class="nav navbar-nav ml-auto">
+        <li role="presentation" class="nav-item" style="background-color: #6c757d;"><a href="{% url 'login' %}" class="nav-link active">Sign Up</a></li>
+        <li role="presentation" class="nav-item" style="background-color: #6c757d;"><a href="{% url 'signup' %}" class="nav-link active">Sign Up</a></li>
+    </ul>
+</div>

@@ -1,12 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
 {% extends 'base.html' %}
-{% block title %}Login{% endblock %}
-
 {% block content %}
-    <div class="card bg-light card-body mx-auto p-3" style="max-width: 500px;">
+    <div class="card bg-light card-body mx-auto p-3" style="max-width: 500px; margin-top: 10vh">
 	<h4 class="card-title mt-3 text-center">Log In</h4>
     <form method="post">
         {% csrf_token %}
         <div class="form-group input-group input-group-prepend">
+            {% for message in messages %}
+                <div class="card alert-danger text-center"style="min-width: 466px">
+                    {{ message }}
+                </div>
+            {% endfor %}
             <p class="input-group">Username</p>
             <span class="input-group-text"> <img src="/static/icon/account.svg" alt=""> </span>
             <label for="username"></label><input class="form-control" id="username" name="username" placeholder="Username" required type="text">
@@ -17,15 +26,8 @@
             <input class="form-control" minlength="8" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter password"
                    title="Must contain at least 8 characters, one number, an uppercase and a lowercase letter" type="password" required>
         </div>
-        <div class="alert-danger">
-            <p class="">
-                {% for message in messages %}
-                    {{ message }}
-                {% endfor %}
-            </p>
-        </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block"> Sign in  </button>
+            <button type="submit" class="btn btn-primary btn-block"> Log in  </button>
         </div>
     </form>
     <p class="text-center">Don't have an account? <a href="{% url 'signup' %}">Sign up</a> </p>

@@ -1,14 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
 {% extends 'base.html' %}
-
-{% block title %}Home{% endblock %}
-
 {% block content %}
-    
+<style>
+    .main_div{min-width: 600px}
+    .btn1{min-width: 170px}
+</style>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="card bg-warning alert-warning text-center" style="min-width: 500px">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
 {% if user.is_authenticated %}
-
+    {% if user.is_staff %}
+        <div class="main_div m-3">
+        <table class="table table-active">
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td>Add Teachers to the database</td>
+                            <td><a href="{% url 'add_teacher' %}"><button class="btn btn-primary btn1" type="button">Add teacher</button></a></td>
+                            <td><a href="{% url 'import_teacher_detail' %}"><button class="btn btn-primary btn1" type="button">Import</button></a></td>
+                        </tr>
+                        <tr>
+                            <td>Remove Teachers from the database</td>
+                            <td><a href="{% url 'remove_teacher' %}"><button class="btn btn-primary btn1" type="button">Remove teacher</button></a></td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table>
+                        <tr>
+                            <td> Add classes to the database</td>
+                            <td><a href="{% url 'add_class' %}"><button class="btn btn-primary btn1" type="button">Add class</button></a></td>
+                            <td><a href="{% url 'import_teacher_detail' %}"><button class="btn btn-primary btn1" type="button">Import</button></a></td>
+                        </tr>
+                        <tr>
+                            <td>Remove classes to the database</td>
+                            <td><a href="{% url 'remove_class' %}"><button class="btn btn-primary btn1" type="button">Remove class</button></a></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        </div>
+     {% endif %}
+    <div class="main_div m-3">
+        <table class="table table-active">
+            <tr>
+                <td>View teachers load list</td>
+                <td><a href="{% url 'view_load_list' %}"><button class="btn btn-primary btn1" type="button">View load list</button></a></td>
+            </tr>
+            <tr>
+                <td>View individual teacher's load</td>
+                <td><a href="{% url 'view_individual' %}"><button class="btn btn-primary btn1" type="button">View individual load</button></a></td>
+            </tr>
+        </table>
+    </div>
 {% else %}
 
 {% endif %}
-
 
 {% endblock %}

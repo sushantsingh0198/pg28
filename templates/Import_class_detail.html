@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Class</title>
+</head>
+{% extends 'base.html' %}
+{% block content %}
+    {% if user.is_authenticated %}
+        {% if user.is_staff %}
+            <div class="card bg-light card-body mx-auto p-3" style="max-width: 500px; margin-top: 10vh ">
+                <form id="add_class" method="post" action="{% url 'import_class_detail' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group input-group input-group-prepend">
+                        {% for message in messages %}
+                            <div class="card bg-warning alert-warning text-center" style="min-width: 466px">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        <p class="input-group">Choose file in CSV format</p>
+                        <label for="name"></label>
+                        <input class="form-control" id="teacher_detail_excel" name="file" placeholder="choose file" required type="file">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block"> Add Class</button>
+                    </div>
+                </form>
+            </div>
+        {% else %}
+            <div class="bg-danger border-danger">
+                <p class="alert-danger text-danger">
+                    Yoy are not authorised to add class<br>
+                    Please login with authorised UserID<br>
+                    <a href="{% url 'login' %}">Click Here</a> to Login
+                </p>
+            </div>
+        {% endif %}
+    {% else %}
+        <div class="bg-danger border-danger">
+            <p class="alert-danger text-danger">
+                Yoy are not loged in<br>
+                <a href="{% url 'login' %}">Click Here</a> to Login
+            </p>
+        </div>
+    {% endif %}
+{% endblock %}
