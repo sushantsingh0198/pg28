@@ -7,7 +7,11 @@
 {% extends 'base.html' %}
 {% block content %}
     {% if user.is_authenticated %}
-
+        <ul class="dropdown-menu">
+            {% for teachers in teacher %}
+                <li>{{ teachers.name }}</li>
+                <li>{{ teachers.available_load }}</li>
+            {% endfor %}
+        </ul>
     {% endif %}
-
 {% endblock %}

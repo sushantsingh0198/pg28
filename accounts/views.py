@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.models import User, auth
-from django.contrib.auth import authenticate
-from django.contrib import messages
-from .models import *
-import io
 import csv
+import io
+from django.contrib import messages
+from django.contrib.auth import authenticate
+from django.contrib.auth.models import User, auth
+from django.shortcuts import render, redirect
+from .models import *
 
 
 # Create your views here.
@@ -95,9 +95,9 @@ def add_class(request):
         return render(request, 'add_class.html')
 
 
-def import_class_detaail(request):
+def import_class_detail(request):
     if request.method == 'POST':
-        return render(request,'import_class_detail.html')
+        return render(request, 'import_class_detail.html')
     else:
         return render(request, 'import_class_detail.html')
 
@@ -107,8 +107,10 @@ def remove_class(request):
 
 
 def view_load_list(request):
-    return render(request, 'view_load_list.html')
+    if request.method == 'GET':
+        tdetail = TeacherDetail.objects.all()
+        return render(request, 'view_load_list.html', {'teacher': tdetail})
 
 
-def viwe_individual(request):
+def view_individual(request):
     return render(request, 'view_individual.html')
